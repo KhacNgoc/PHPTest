@@ -1,9 +1,6 @@
 <?php
 $id=$_POST['id'];
-$cat=$_POST['cat'];
-$name=$_POST['name'];
-$year=$_POST['year'];
-if(!empty($id) || !empty($cat) || !empty($name) || !empty($year)){
+if(!empty($id)){
     $servername="localhost";
     $username="root";
     $password="";

@@ -11,14 +11,20 @@ $year=$_POST['year'];
         die("Connection failed: ".$conn->connect_error);
     }
     if(!empty($id)){
-    $sql="SELECT Sach.tensach as i1, LoaiSach.tentheloai as i2, Sach.namxb as i3 FROM Sach INNER JOIN LoaiSach ON Sach.matheloai=LoaiSach.matheloai WHERE Sach.masach=$id";
+        $sql="SELECT Sach.tensach as i1, LoaiSach.tentheloai as i2, Sach.namxb as i3 FROM Sach INNER JOIN LoaiSach ON Sach.matheloai=LoaiSach.matheloai WHERE Sach.masach=$id";
     }
     else if(!empty($cat)){
         $sql="SELECT Sach.tensach as i1, LoaiSach.tentheloai as i2, Sach.namxb as i3 FROM Sach INNER JOIN LoaiSach ON Sach.matheloai=LoaiSach.matheloai WHERE Sach.matheloai=$cat";
     }
     else if(!empty($name)){
-        $sql="SELECT Sach.tensach as i1, LoaiSach.tentheloai as i2, Sach.namxb as i3 FROM Sach INNER JOIN LoaiSach ON Sach.matheloai=LoaiSach.matheloai WHERE Sach.tensach LIKE '".$name."'";
-
+        $sql="SELECT Sach.tensach as i1, LoaiSach.tentheloai as i2, Sach.namxb as i3 FROM Sach INNER JOIN LoaiSach ON Sach.matheloai=LoaiSach.matheloai WHERE Sach.tensach LIKE '%".$name."%'";
+    }
+    else if(!empty($year)){
+        $sql="SELECT Sach.tensach as i1, LoaiSach.tentheloai as i2, Sach.namxb as i3 FROM Sach INNER JOIN LoaiSach ON Sach.matheloai=LoaiSach.matheloai WHERE Sach.namxb=$year";
+    }
+    else{
+        echo "Khong thay dieu kien loc.";
+        die();
     }
     $result=$conn->query($sql);
     if($conn->query($sql)==TRUE){
