@@ -1,19 +1,20 @@
 <?php
 $id=$_POST['id'];
 $cat=$_POST['cat'];
-$name=$_POST['name'];
-$year=$_POST['year'];
-if(!empty($id) || !empty($cat) || !empty($name) || !empty($year)){
+$room=$_POST['room'];
+$bad=$_POST['bad'];
+if(!empty($id) || !empty($cat) || !empty($room) || !empty($bad)){
     $servername="localhost";
     $username="root";
     $password="";
-    $conn=new mysqli($servername, $username, $password, 'thuvien');
+    $conn=new mysqli($servername, $username, $password, 'phongkhach');
     if($conn->connect_error){
         die("Connection failed: ".$conn->connect_error);
     }
-    $sql="UPDATE Sach SET matheloai=$cat, tensach='".$name."', namxb='".$year."' WHERE masach=$id";
+    $sql="UPDATE Phong SET maloai=$cat, sophong='".$room."', sogiuong='".$bad."' WHERE maphong=$id";
     if($conn->query($sql)==TRUE){
-        echo "Update ok.";
+        echo "<script>alert('Update ok.')</script>";
+        echo "<script>window.open('index.php','_self')</script>";
     }
     else echo "Error".$sql."<br>".$conn->error;
 }
